@@ -14,19 +14,38 @@ import router from './routes/index.js';
 
 const app = express();
 
+// allow cross domain
+app.all('*', (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || '*');
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("X-Powered-By", '3.2.1')
+  if (req.method == 'OPTIONS') {
+      res.send(200);
+  } else {
+      next();
+  }
+});
+
 // view engine setup
 // if want to use, remove annotations please
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(logger('dev'));
 
 // router
 router(app);
+
+// static source
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', function (req, res) {
+  res.sendFile('./public/index.html')
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
