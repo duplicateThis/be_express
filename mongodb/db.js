@@ -7,13 +7,13 @@ mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
 db.once('connected', () => {
-  console.log('MongoDB connected success.')
+ 	console.log('MongoDB connected success.')
 })
 db.on('error', () => {
-  console.log('MongoDB connected fail.')
+ 	console.log('MongoDB connected fail.')
 })
 db.on('disconnected', () => {
-  console.log('MongoDB connected disconnected.')
+ 	console.log('MongoDB connected disconnected.')
 })
 
 module.exports = db

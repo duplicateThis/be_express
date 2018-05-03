@@ -3,5 +3,5 @@
 import Name from '../models/example.js';
 
 module.exports = (req, res, next) => {
-	res.send('example')
+	res.send({'example': 'aaa'})
 } 

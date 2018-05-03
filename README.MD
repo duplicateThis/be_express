@@ -1,6 +1,6 @@
 ## 启动服务
 1. npm i （已安装node_modules的请忽略）
-2. DEBUG=node-frame1-b:* npm start
+2. DEBUG=node-frame1:* npm start
 
 可以在控制台看到服务启动成功的提示，如果本地数据库服务也打开了的话，还会看到数据库连接成功的提示。
 
